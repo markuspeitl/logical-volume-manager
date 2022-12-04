@@ -32,7 +32,7 @@ FS_TABLE_ENTRY="$DEVICE_VOLUME $MOUNT_POINT $FILE_SYSTEM $OPTIONS 0 $MOUNT_PRIOR
 echo "Fstab entry to write:"
 echo "$FS_TABLE_ENTRY"
 
-DEVICE_FOUND=$(echo "$FSTAB_CONFIG" | grep $DEVICE_VOLUME)
+DEVICE_FOUND=$(cat "$FSTAB_CONFIG" | grep -o "$DEVICE_VOLUME")
 
 if [ -z "$DEVICE_FOUND" ]; then
     echo "$FS_TABLE_ENTRY" | sudo tee -a /etc/fstab
