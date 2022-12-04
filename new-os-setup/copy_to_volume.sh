@@ -19,6 +19,7 @@ copy_to_volume(){
 
     echo "Copying files: \"cp ${@:1:$#-1} $TMP_MOUNT_DIR/$TARGET_PATH\""
     #cp -ap "$SOURCE_DIRECTORY/*" "$TMP_MOUNT_DIR"
+    #From 1st argument to Length - 1 argument (ignore cp and ignore the last-target path)
     sudo cp ${@:1:$#-1} "$TMP_MOUNT_DIR/$TARGET_PATH"
 
     echo "Unmounting $TMP_MOUNT_DIR"

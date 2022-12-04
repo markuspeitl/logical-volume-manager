@@ -1,13 +1,19 @@
 #!/bin/bash
 
+#add_fstab_entry.sh /dev/mapper/nvmegroup-kubuntu--root / ext4 1
+#add_fstab_entry.sh "$DEVICE_VOLUME" "$MOUNT_POINT" "$FILE_SYSTEM" "$MOUNT_PRIORITY" "$OPTIONS"
+
 DEVICE_VOLUME="$1"
 MOUNT_POINT="$2"
 FILE_SYSTEM="$3"
-MOUNT_ORDER="$4"
+MOUNT_PRIORITY="$4"
 OPTIONS="$5"
 
-if [ -z "$MOUNT_ORDER" ]; then
-    MOUNT_ORDER=2
+echo "Creating fstab mountpoint entry for: $DEVICE_VOLUME at $MOUNT_POINT"
+
+
+if [ -z "$MOUNT_PRIORITY" ]; then
+    MOUNT_PRIORITY=2
 fi
 
 if [ -z "$OPTIONS" ]; then
@@ -21,7 +27,7 @@ echo "Current /etc/fstab:"
 cat "$FSTAB_CONFIG"
 echo -e "\n"
 
-FS_TABLE_ENTRY="$DEVICE_VOLUME $MOUNT_POINT $FILE_SYSTEM $OPTIONS 0 $MOUNT_ORDER"
+FS_TABLE_ENTRY="$DEVICE_VOLUME $MOUNT_POINT $FILE_SYSTEM $OPTIONS 0 $MOUNT_PRIORITY"
 
 echo "Fstab entry to write:"
 echo "$FS_TABLE_ENTRY"
