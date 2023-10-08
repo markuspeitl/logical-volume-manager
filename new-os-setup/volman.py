@@ -37,11 +37,12 @@ if __name__ == "__main__":
     create_parser.add_argument('name', help="New logical volume name")
     create_parser.add_argument('size', help="Volume Size eg 50G, 10M, 1000K")
     create_parser.add_argument('group', help="Volume Group")
-    create_parser.add_argument('-n', '--stripes', nargs='?', default=2, const=2, help="Number of stripes = number of physical devices in group", type=int)
-    create_parser.add_argument('-s', '--stripesize', nargs='?', default="32k", const="32k", help="Size of a stripe, every file that is bigger than this size, uses striping -> higher write/read performance")
+    create_parser.add_argument('-n', '--stripes', nargs='?', default=2, const=2, help="Number of stripes = number of physical devices in volume group to load balance writing between devices", type=int)
+    create_parser.add_argument('-s', '--stripesize', nargs='?', default="32k", const="32k", help="Size of a stripe, every file that is bigger than this size, uses striping -> higher write/read performance, smaller files are just written on 1 stripe and therefore 1 device")
     create_parser.add_argument('-f', '--fstype', nargs='?', default="ext4", const="ext4", help="Target filesystem type (ext4,)")
     create_parser.add_argument('-r', '--reserved', nargs='?', default=2, const=2, help="Amount of the volume in percent reserved for root and inode storage", type=int)
 
+    #Options for directory migration, create volume -> create fs -> copy files -> mount over specified directory and enable mounting at boot
     migrate_parser.add_argument('dir', help="Target directory that should be replaced by volume and holds files")
     migrate_parser.add_argument('name', help="New logical volume name")
     migrate_parser.add_argument('size', help="Volume Size eg 50G, 10M, 1000K")

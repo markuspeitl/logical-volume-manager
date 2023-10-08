@@ -111,7 +111,8 @@ add_fstab_entry(){
 # ------ Add logical volume for Root (where the OS and applications are installed to)
 #stripes = 2 -> 2 stripes -> as there are 2 phsical volumes/devices, we choose 2
 #stripesize minimum size of a file where striping starts - higher numbers have better performance on large files, while smaller files are only written to one disk and therefore do not benefit from striping
-lvcreate --stripes 2 --stripesize 32k --size 100G -n kubuntu-root nvmegrouplvcreate --stripes 2 --stripesize 32k --size 100G -n kubuntu-root "$VOL_GRP"
+lvcreate --stripes 2 --stripesize 32k --size 100G -n kubuntu-root nvmegroup
+#lvcreate --stripes 2 --stripesize 32k --size 100G -n kubuntu-root "$VOL_GRP"
 mkfs.ext4 -L Root /dev/"$VOL_GRP"/kubuntu-root
 file -L --special-files /dev/"$VOL_GRP"/kubuntu-root
 
