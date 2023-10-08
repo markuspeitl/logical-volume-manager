@@ -9,8 +9,10 @@
 #volman init audio-module
 
 #python3 volman.py create "somevolname" "1G" "nvmegroup"
+#python3 volman.py create \"gaming-volume\" \"150G\" \"nvmegroup\" --stripes 2 --stripesize 32k"
 #python3 volman.py list
 #python3 volman.py remove somevolname
+
 
 import os
 import subprocess
