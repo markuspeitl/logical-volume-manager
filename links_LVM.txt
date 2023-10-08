@@ -6,5 +6,3 @@ https://web.mit.edu/rhel-doc/5/RHEL-5-manual/Cluster_Logical_Volume_Manager/stri
 https://linuxhint.com/lvm_home_directories/
 https://www.tecmint.com/extend-and-reduce-lvms-in-linux/
 https://unix.stackexchange.com/questions/574181/lvm-renaming-a-volume-group-and-ensuring-system-can-boot
-
-3vtwtrFyfJwn
